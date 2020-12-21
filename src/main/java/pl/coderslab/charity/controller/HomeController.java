@@ -1,4 +1,4 @@
-package pl.coderslab.charity;
+package pl.coderslab.charity.controller;
 
 import org.springframework.data.domain.Example;
 import org.springframework.data.domain.Page;

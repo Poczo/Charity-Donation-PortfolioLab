@@ -1,9 +1,8 @@
 package pl.coderslab.charity.entity;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 public class Category {
@@ -12,6 +11,9 @@ public class Category {
     private Long id;
 
     private String name;
+
+    @ManyToMany(mappedBy = "categoryList")
+    private List<Donation> donations = new ArrayList<>();
 
     public Long getId() {
         return id;

@@ -3,6 +3,7 @@ package pl.coderslab.charity.entity;
 import javax.persistence.*;
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -12,8 +13,8 @@ public class Donation {
     private Long id;
 
     private Integer quantity;
-    @OneToMany
-    private List<Category> categoryList;
+    @ManyToMany
+    private List<Category> categoryList = new ArrayList<>();
 
     @ManyToOne
     private Institution institution;

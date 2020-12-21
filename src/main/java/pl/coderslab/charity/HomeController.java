@@ -31,6 +31,7 @@ public class HomeController {
     public String homeAction(Model model){
         model.addAttribute("institutions", institutionRepository.findAll());
         model.addAttribute("sumOfAllBags", donationRepository.sumAllBagsFromDonations());
+        model.addAttribute("sumOfAllDonations", donationRepository.sumOfAllDonations());
         return "index";
     }
 

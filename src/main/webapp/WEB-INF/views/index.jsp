@@ -1,7 +1,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
-<%@ taglib prefix = "fmt" uri = "http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html lang="pl">
 <head>
@@ -13,7 +13,7 @@
     <link rel="stylesheet" href="<c:url value="resources/css/style.css"/>"/>
 </head>
 <body>
-<jsp:include page="/WEB-INF/views/header.jsp" />
+<jsp:include page="/WEB-INF/views/header.jsp"/>
 <section class="stats">
     <div class="container container--85">
         <div class="stats--item">
@@ -82,33 +82,36 @@
         <p>W naszej bazie znajdziesz listę zweryfikowanych Fundacji, z którymi współpracujemy.
             Możesz sprawdzić czym się zajmują.</p>
 
-                <ul class="help--slides-items">
-                    <li>
-                        <c:forEach var="institution" items="${institutions}" varStatus="loopCounter">
-                            <c:if test="${loopCounter.count %2 == 0}">
-                            <div class="col">
-                                <div class="title">Fundacja "${institution.name}"</div>
-                                <div class="subtitle"> Cel i misja: ${institution.description}</div>
-                            </div>
-                            </c:if>
-                        </c:forEach>
-                    </li>
-                    <li>
-                        <c:forEach var="institution" items="${institutions}" varStatus="loopCounter">
-                            <c:if test="${loopCounter.count %2 == 1}">
-                            <div class="col">
-                                <div class="title">Fundacja  "${institution.name}"</div>
-                                <div class="subtitle"> Cel i misja: ${institution.description}</div>
-                            </div>
-                            </c:if>
-                        </c:forEach>
-                    </li>
-                </ul>
+        <ul class="help--slides-items">
+            <c:forEach var="institution" items="${institutions}" step="2" varStatus="loopCounter">
+
+                <li>
+                    <div class="col">
+                        <div class="title">Fundacja "${institution.name}"</div>
+                        <div class="subtitle"> Cel i misja: ${institution.description}</div>
+                    </div>
+
+
+                    <c:if test="${loopCounter.index + 1 < institutions.size()}">
+                        <div class="col">
+                            <div class="title">Fundacja "${institutions.get(loopCounter.index + 1).name}"</div>
+                            <div class="subtitle"> Cel i misja: ${institutions.get(loopCounter.index + 1).description}</div>
+                        </div>
+                    </c:if>
+
+                    <c:if test="${loopCounter.index + 1 >= institutions.size()}">
+                        <div class="col" style="visibility: hidden">
+                        </div>
+                    </c:if>
+                </li>
+            </c:forEach>
+
+        </ul>
     </div>
 
 </section>
 
-<jsp:include page="/WEB-INF/views/footer.jsp" />
+<jsp:include page="/WEB-INF/views/footer.jsp"/>
 
 <script src="<c:url value="resources/js/app.js"/>"></script>
 </body>
